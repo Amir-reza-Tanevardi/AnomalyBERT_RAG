@@ -50,6 +50,12 @@ class AnomalyTransformer(nn.Module):
         output = self.mlp_layers(transformer_out)  # Reconstruct data.
         return output.view(n_batch, self.max_seq_len, self.patch_size, -1).view(n_batch, self.data_seq_len, -1)
     
+    def decode(self, x):
+      n_batch = x.shape[0]
+      seq_rep = x.unsqueeze(1).expand(-1, self.max_seq_len, -1)
+      output = self.mlp_layers(seq_rep)  # Reconstruct data.
+      return output.view(n_batch, self.max_seq_len, self.patch_size, -1).view(n_batch, self.data_seq_len, -1)
+    
     def encode(self, x):
         """
         Return a single latent vector per window:

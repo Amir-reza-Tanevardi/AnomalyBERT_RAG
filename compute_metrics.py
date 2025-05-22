@@ -101,7 +101,7 @@ def f1_score(gt, pr, anomaly_rate=0.05, adjust=True, modify=False):
     recall = TP / (TP + FN)
     f1_score = 2*precision*recall/(precision+recall)
 
-    return precision, recall, f1_score
+    return precision, recall, f1_score , TP , FP , FN
 
 
 
