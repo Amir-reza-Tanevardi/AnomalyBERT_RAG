@@ -179,7 +179,7 @@ def estimate(test_data, train_data, model, post_activation, out_dim, batch_size,
             local_mean = torch.from_numpy(nbr_scores.mean(axis=1)).to(device)
             local_std = torch.from_numpy(nbr_scores.std(axis=1)).to(device)
             raw_ts = _output_values.squeeze(-1)  # shape (data_len,)
-            rag_values[division[0]:division[1]] = (raw_ts - 10*local_mean)
+            rag_values[division[0]:division[1]] = (raw_ts - 20*local_mean)
 
 
     return output_values, rag_values
